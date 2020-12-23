@@ -13,7 +13,6 @@ class Queue:
     def is_empty(self):
         return self.front is None
 
-    # Method to add an element to the queue 
     def enqueue(self, element):
         temp = Item(element)
 
@@ -22,8 +21,6 @@ class Queue:
             return
         self.back.next = temp
         self.back = temp
-
-        # Method to remove an element from queue 
 
     def dequeue(self):
 
