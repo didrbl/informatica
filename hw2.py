@@ -4,11 +4,7 @@ class Item:
         self.data = data
         self.next = None
 
-
-# A class to represent a queue 
-
-# The queue, front stores the front element 
-# of LL and back stores the last element of LL 
+        
 class Queue:
 
     def __init__(self):
