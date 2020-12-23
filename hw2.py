@@ -2,55 +2,53 @@ class Item:
 
     def __init__(self, data):
         self.data = data
+        self.next = None
 
 
+# A class to represent a queue 
+
+# The queue, front stores the front element 
+# of LL and back stores the last element of LL 
 class Queue:
-    def __init__(self):
-        self.items = []
 
-    def enqueue(self, item):
-        self.items.insert(0, item)
+    def __init__(self):
+        self.front = self.back = None
+
+    def is_empty(self):
+        return self.front is None
+
+    # Method to add an element to the queue 
+    def enqueue(self, element):
+        temp = Item(element)
+
+        if self.back is None:
+            self.front = self.back = temp
+            return
+        self.back.next = temp
+        self.back = temp
+
+        # Method to remove an element from queue 
 
     def dequeue(self):
-        return self.items.pop()
 
-    def front(self):
-        if not self.items:
-            res = None
-        else:
-            res = self.items[-1].data
-        return res
+        if self.is_empty():
+            return
+        temp = self.front
+        self.front = temp.next
 
-    def back(self):
-        if not self.items:
-            res = None
-        else:
-            res = self.items[0].data
-        return res
+        if self.front is None:
+            self.back = None
 
     def size(self):
-        return len(self.items)
-
+        count = 0
+        item = self.front
+        while item:
+            count += 1
+            item = item.next
+        return count
+    
     def clear(self):
-        self.items = []
-
-
-a, b, c = Item(1), Item('cat'), Item('dog')
-q = Queue()
-
-for i in [a, b, c]:
-    q.enqueue(i)
-
-print(q.front())
-print(q.back())
-
-q.dequeue()
-
-print(q.front())
-print(q.back())
-
-print(q.size())
-
-q.clear()
-
-print(q.size())
+        while self.front is not None:
+            temp = self.front
+            self.front = self.front.next
+            temp = None
